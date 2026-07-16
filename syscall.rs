@@ -47,7 +47,7 @@ struct ImageEntry {
 
 unsafe fn calcular_bytes_frame(unwind_info_va: usize, count_of_codes: u8) -> Option<u32> {
     if count_of_codes == 0 {
-        return Some(8); // O return 8, dependiendo de cómo lo tengas en tu código actual
+        return Some(8); 
     }
 
     let codes_ptr = (unwind_info_va + 4) as *const UnwindCode;
@@ -67,7 +67,7 @@ unsafe fn calcular_bytes_frame(unwind_info_va: usize, count_of_codes: u8) -> Opt
                 i += 1;
             }
             2 => {
-                total_bytes += (op_info as u32 * 8) + 8; //
+                total_bytes += (op_info as u32 * 8) + 8; 
                 i += 1;
             }
             1 => {
@@ -106,7 +106,7 @@ unsafe fn calcular_bytes_frame(unwind_info_va: usize, count_of_codes: u8) -> Opt
             }
         }
     }
-    Some(total_bytes) // O total_bytes + 8, según lo que tengas
+    Some(total_bytes)
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -148,7 +148,6 @@ unsafe fn get_unwind_info(dll_base: *const u8, func_rva: u32) -> usize {
             // println!("virtual size: 0x{:x?}", sec.VirtualSize);
             // println!("pointer to raw data: 0x{:x?}", sec.PointerToRawData);
             // println!("size of raw data: 0x{:x?}", sec.SizeOfRawData);
-            // println!("-----------------------------------");
             if name == ".pdata" {
                 let pdata_start = dll_base.add(sec.VirtualAddress as usize);
                 let pdata_size = sec.VirtualSize as usize;
