@@ -570,7 +570,6 @@ mod tests {
             get_ssn("NtAllocateVirtualMemory");
             get_ssn("NtProtectVirtualMemory");
             get_ssn("NtWriteVirtualMemory");
-            get_ssn("EtwEventWrite");
         }
     }
 }
